@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon E-Portfolio Développeur | Tech & Innovation</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                        },
+                        accent: {
+                            purple: '#8b5cf6',
+                            indigo: '#6366f1',
+                            pink: '#ec4899',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Text Gradient Effect */
+        .text-gradient {
+            background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Blob Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col justify-between">
+
+    <!-- NAV BAR -->
+    <header class="sticky top-0 z-40 glass w-full transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#accueil" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform duration-300">
+                    &lt;/&gt;
+                </div>
+                <span class="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
+                    Alex<span class="text-gradient">.dev</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#accueil" class="hover:text-cyan-500 transition-colors">Accueil</a>
+                <a href="#apropos" class="hover:text-cyan-500 transition-colors">À propos</a>
+                <a href="#competences" class="hover:text-cyan-500 transition-colors">Compétences</a>
+                <a href="#projets" class="hover:text-cyan-500 transition-colors">Projets</a>
+                <a href="#temoignages" class="hover:text-cyan-500 transition-colors">Témoignages</a>
+                <a href="#contact" class="hover:text-cyan-500 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden md:flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors focus:outline-none" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark:hidden text-lg"></i>
+                    <i class="fa-solid fa-sun hidden dark:block text-lg"></i>
+                </button>
+
+                <!-- GitHub Guide Modal Trigger -->
+                <button onclick="openModal('githubGuideModal')" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-500 transition-colors" title="Guide Déploiement GitHub Pages">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </button>
+
+                <!-- Download CV CTA -->
+                <a href="#contact" onclick="fakeDownloadCV(event)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 hover:-translate-y-0.5 flex items-center space-x-2">
+                    <i class="fa-solid fa-download text-sm"></i>
+                    <span>Télécharger CV</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="flex items-center space-x-3 md:hidden">
+                <button id="themeToggleMobile" class="p-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+                <button id="mobileMenuBtn" class="p-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass border-t border-slate-200 dark:border-slate-800 px-4 pt-4 pb-6 space-y-3">
+            <a href="#accueil" class="block py-2 text-base font-medium hover:text-cyan-500">Accueil</a>
+            <a href="#apropos" class="block py-2 text-base font-medium hover:text-cyan-500">À propos</a>
+            <a href="#competences" class="block py-2 text-base font-medium hover:text-cyan-500">Compétences</a>
+            <a href="#projets" class="block py-2 text-base font-medium hover:text-cyan-500">Projets</a>
+            <a href="#temoignages" class="block py-2 text-base font-medium hover:text-cyan-500">Témoignages</a>
+            <a href="#contact" class="block py-2 text-base font-medium hover:text-cyan-500">Contact</a>
+            <button onclick="openModal('githubGuideModal')" class="w-full text-left py-2 font-medium text-cyan-500 flex items-center space-x-2">
+                <i class="fa-brands fa-github"></i>
+                <span>Guide d'hébergement GitHub Pages</span>
+            </button>
+            <a href="#contact" onclick="fakeDownloadCV(event)" class="block text-center py-2.5 rounded-xl bg-cyan-500 text-white font-semibold">Télécharger CV</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. HERO SECTION -->
+        <section id="accueil" class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden">
+            <!-- Background Glow Blobs -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/20 dark:bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-float"></div>
+            <div class="absolute top-1/3 right-10 w-80 h-80 bg-indigo-500/20 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glass border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-cyan-500 animate-ping"></span>
+                            <span>Disponible pour opportunités / Projets</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Développeur <span class="text-gradient">Full-Stack</span> & Architecte Web
+                        </h1>
+                        
+                        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto lg:mx-0 font-normal">
+                            Je conçois et développe des applications web performantes, scalables et centrées sur l'utilisateur. Spécialisé dans les écosystèmes JS/TS, React, Node.js et les architectures modernes Cloud-Native.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#projets" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                                Explorer mes projets
+                            </a>
+                            <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold transition-all">
+                                Me contacter
+                            </a>
+                        </div>
+
+                        <!-- Social Icons -->
+                        <div class="pt-4 flex items-center justify-center lg:justify-start space-x-5 text-2xl text-slate-500 dark:text-slate-400">
+                            <a href="https://github.com" target="_blank" rel="noopener" class="hover:text-cyan-500 transition-colors"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-cyan-500 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="mailto:contact@exemple.com" class="hover:text-cyan-500 transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-cyan-500 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual / Graphic -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Glowing Frame -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-indigo-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                            
+                            <!-- Mock Terminal / Card -->
+                            <div class="relative glass-card rounded-2xl p-6 shadow-2xl space-y-4">
+                                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <span class="text-xs font-mono text-slate-400">developer.ts</span>
+                                </div>
+                                
+                                <div class="font-mono text-xs sm:text-sm space-y-2 text-slate-700 dark:text-slate-300">
+                                    <p><span class="text-purple-500">const</span> <span class="text-cyan-500">developer</span> = {</p>
+                                    <p class="pl-4"><span class="text-indigo-400">nom</span>: <span class="text-emerald-400">'Alex'</span>,</p>
+                                    <p class="pl-4"><span class="text-indigo-400">role</span>: <span class="text-emerald-400">'Full-Stack Software Engineer'</span>,</p>
+                                    <p class="pl-4"><span class="text-indigo-400">passion</span>: [<span class="text-emerald-400">'Clean Code'</span>, <span class="text-emerald-400">'Web Tech'</span>, <span class="text-emerald-400">'UX'</span>],</p>
+                                    <p class="pl-4"><span class="text-indigo-400">disponible</span>: <span class="text-amber-400">true</span></p>
+                                    <p>};</p>
+                                    <p class="pt-2"><span class="text-purple-500">function</span> <span class="text-blue-400">buildAwesomeApps</span>() {</p>
+                                    <p class="pl-4 text-slate-400">// Transforme des idées complexes en code élégant</p>
+                                    <p class="pl-4"><span class="text-purple-500">return</span> developer.passion.map(tech =&gt; solve(tech));</p>
+                                    <p>}</p>
+                                </div>
+
+                                <div class="bg-slate-100 dark:bg-slate-900/80 rounded-lg p-3 text-xs font-mono text-cyan-500 flex items-center justify-between">
+                                    <span>Status: Build success 🔥</span>
+                                    <span class="animate-pulse">_</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. À PROPOS / BIO SECTION -->
+        <section id="apropos" class="py-20 bg-slate-100/50 dark:bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <h2 class="text-xs font-bold text-cyan-500 uppercase tracking-widest">Mon Parcours</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">À propos de moi</p>
+                    <p class="text-slate-600 dark:text-slate-400">Découvrez qui je suis, ma philosophie de travail et ce qui me motive au quotidien.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Bio Text -->
+                    <div class="lg:col-span-7 space-y-6 text-slate-600 dark:text-slate-300">
+                        <p class="text-lg leading-relaxed">
+                            Passionné par la technologie depuis plusieurs années, j'ai développé une solide expertise dans la création d'applications web modernes. Mon objectif est d'allier une **architecture technique rigoureuse** à une **expérience utilisateur (UX) fluide et esthétique**.
+                        </p>
+                        <p class="leading-relaxed">
+                            Qu'il s'agisse de concevoir une API REST/GraphQL hautement performante ou d'intégrer des interfaces réactives et accessibles avec React et Tailwind CSS, j'accorde une attention particulière aux détails, aux tests et aux bonnes pratiques de développement.
+                        </p>
+
+                        <!-- Key Metrics -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6">
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <span class="block text-3xl font-extrabold text-cyan-500">15+</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Projets Réalisés</span>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <span class="block text-3xl font-extrabold text-indigo-500">3+</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Années d'expérience</span>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl text-center col-span-2 sm:col-span-1">
+                                <span class="block text-3xl font-extrabold text-pink-500">100%</span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Engagement & Qualité</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vision Cards -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="glass-card p-6 rounded-2xl flex items-start space-x-4 border-l-4 border-l-cyan-500">
+                            <div class="p-3 bg-cyan-500/10 text-cyan-500 rounded-xl text-xl">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Code Propre & Maintenable</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">L'architecture logicielle propre (Clean Code / SOLID) est la clé de voûte de tous mes projets.</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex items-start space-x-4 border-l-4 border-l-indigo-500">
+                            <div class="p-3 bg-indigo-500/10 text-indigo-500 rounded-xl text-xl">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Responsive & Accessible</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Garantir une expérience irréprochable sur tous les écrans (Mobile, Tablette, Desktop).</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex items-start space-x-4 border-l-4 border-l-pink-500">
+                            <div class="p-3 bg-pink-500/10 text-pink-500 rounded-xl text-xl">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 dark:text-white text-lg">Apprentissage Continu</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Veille technologique constante pour adopter les meilleures innovations du marché.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MATRICE DE COMPÉTENCES -->
+        <section id="competences" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <h2 class="text-xs font-bold text-cyan-500 uppercase tracking-widest">Stack Technique</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mes Compétences</p>
+                    <p class="text-slate-600 dark:text-slate-400">Un aperçu structuré des technologies et outils que je maîtrise.</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mb-12" id="skillTabs">
+                    <button onclick="filterSkills('all')" class="skill-tab active px-5 py-2.5 rounded-xl font-medium text-sm transition-all bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md">Toutes</button>
+                    <button onclick="filterSkills('frontend')" class="skill-tab px-5 py-2.5 rounded-xl font-medium text-sm transition-all glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Frontend</button>
+                    <button onclick="filterSkills('backend')" class="skill-tab px-5 py-2.5 rounded-xl font-medium text-sm transition-all glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Backend & BDD</button>
+                    <button onclick="filterSkills('devops')" class="skill-tab px-5 py-2.5 rounded-xl font-medium text-sm transition-all glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Outils & DevOps</button>
+                    <button onclick="filterSkills('soft')" class="skill-tab px-5 py-2.5 rounded-xl font-medium text-sm transition-all glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Soft Skills</button>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="skillsGrid">
+                    <!-- Frontend Cards -->
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="frontend">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-brands fa-react text-4xl text-cyan-400"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-500">Avancé</span>
+                        </div>
+                        <h3 class="font-bold text-lg">React & Next.js</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Hooks, Context, SSR, SSG, Redux Toolkit.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-cyan-500 h-full rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="frontend">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-brands fa-js text-4xl text-yellow-400"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-yellow-500/10 text-yellow-500">Expert</span>
+                        </div>
+                        <h3 class="font-bold text-lg">JavaScript / TypeScript</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">ES6+, Asynchrone, Typage strict, DOM API.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-yellow-400 h-full rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="frontend">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-palette text-4xl text-sky-400"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-500">Avancé</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Tailwind CSS & UI</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Responsive, Custom themes, CSS Grid/Flexbox.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-sky-400 h-full rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Cards -->
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="backend">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-brands fa-node-js text-4xl text-emerald-500"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-500">Avancé</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Node.js & Express</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">API RESTful, Auth JWT, Middleware, Microservices.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-emerald-500 h-full rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="backend">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-database text-4xl text-indigo-400"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-500">Intermédiaire</span>
+                        </div>
+                        <h3 class="font-bold text-lg">PostgreSQL & MongoDB</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Modélisation, ORM Prisma, Aggregations.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-indigo-400 h-full rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Cards -->
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="devops">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-brands fa-git-alt text-4xl text-orange-500"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-500">Avancé</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Git & GitHub Actions</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">CI/CD, Workflows, Branching strategies.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-orange-500 h-full rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="devops">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-brands fa-docker text-4xl text-blue-500"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-500">Notions</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Docker & Cloud</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Containerisation, Vercel, Netlify, Render.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-full rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="skill-card glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.02] transition-all" data-category="soft">
+                        <div class="flex items-center justify-between">
+                            <i class="fa-solid fa-users text-4xl text-purple-400"></i>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-500">Atout</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Travail en Équipe & Agile</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Scrum, Kanban, Communication claire.</p>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                            <div class="bg-purple-400 h-full rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERIE DE PROJETS (AVEC FICHES STAR) -->
+        <section id="projets" class="py-20 bg-slate-100/50 dark:bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <h2 class="text-xs font-bold text-cyan-500 uppercase tracking-widest">Réalisations Concrètes</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Galerie de Projets</p>
+                    <p class="text-slate-600 dark:text-slate-400">Chaque projet est présenté avec sa fiche détaillée basée sur la méthode **STAR** (Situation, Tâche, Action, Résultat).</p>
+                </div>
+
+                <!-- Project Category Filters -->
+                <div class="flex flex-wrap justify-center gap-2 mb-12">
+                    <button onclick="filterProjects('all')" class="project-tab active px-5 py-2 rounded-xl text-sm font-medium bg-gradient-to-r from-cyan-500 to-indigo-600 text-white shadow-md">Tous</button>
+                    <button onclick="filterProjects('web')" class="project-tab px-5 py-2 rounded-xl text-sm font-medium glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Web Apps</button>
+                    <button onclick="filterProjects('mobile')" class="project-tab px-5 py-2 rounded-xl text-sm font-medium glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">Mobile</button>
+                    <button onclick="filterProjects('api')" class="project-tab px-5 py-2 rounded-xl text-sm font-medium glass hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300">API & Backend</button>
+                </div>
+
+                <!-- Projects Cards Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                    
+                    <!-- Projet 1 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-cyan-500/10 transition-all group" data-category="web">
+                        <div>
+                            <!-- Visual Banner -->
+                            <div class="h-48 bg-gradient-to-br from-cyan-600 to-blue-700 relative overflow-hidden flex items-center justify-center p-6 text-white">
+                                <i class="fa-solid fa-cart-shopping text-6xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md">Full-Stack</span>
+                            </div>
+                            <!-- Card Content -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-500 font-medium">React</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 font-medium">Node.js</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-500 font-medium">Stripe API</span>
+                                </div>
+                                <h3 class="text-xl font-bold">E-Commerce SaaS "ShopFlow"</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Plateforme e-commerce complète avec gestion du panier en temps réel et paiement Stripe sécurisé.</p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50">
+                            <button onclick="openStarModal('starProject1')" class="text-xs font-semibold text-cyan-500 hover:text-cyan-600 flex items-center space-x-1">
+                                <span>Fiche STAR</span>
+                                <i class="fa-solid fa-circle-info"></i>
+                            </button>
+                            <div class="flex space-x-3 text-slate-500 dark:text-slate-400">
+                                <a href="#" onclick="alert('Lien Démo de démonstration'); return false;" class="hover:text-cyan-500"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <a href="https://github.com" target="_blank" class="hover:text-cyan-500"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-cyan-500/10 transition-all group" data-category="api">
+                        <div>
+                            <!-- Visual Banner -->
+                            <div class="h-48 bg-gradient-to-br from-purple-600 to-indigo-800 relative overflow-hidden flex items-center justify-center p-6 text-white">
+                                <i class="fa-solid fa-server text-6xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md">Backend</span>
+                            </div>
+                            <!-- Card Content -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-500 font-medium">Express</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-500 font-medium">PostgreSQL</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-500 font-medium">JWT</span>
+                                </div>
+                                <h3 class="text-xl font-bold">API Gateway & Auth Service</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Service d'authentification centralisé sécurisé avec contrôle d'accès basé sur les rôles (RBAC).</p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50">
+                            <button onclick="openStarModal('starProject2')" class="text-xs font-semibold text-cyan-500 hover:text-cyan-600 flex items-center space-x-1">
+                                <span>Fiche STAR</span>
+                                <i class="fa-solid fa-circle-info"></i>
+                            </button>
+                            <div class="flex space-x-3 text-slate-500 dark:text-slate-400">
+                                <a href="https://github.com" target="_blank" class="hover:text-cyan-500"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 -->
+                    <div class="project-card glass-card rounded-2xl overflow-hidden flex flex-col justify-between hover:shadow-2xl hover:shadow-cyan-500/10 transition-all group" data-category="mobile">
+                        <div>
+                            <!-- Visual Banner -->
+                            <div class="h-48 bg-gradient-to-br from-emerald-600 to-teal-800 relative overflow-hidden flex items-center justify-center p-6 text-white">
+                                <i class="fa-solid fa-heart-pulse text-6xl opacity-30 group-hover:scale-110 transition-transform duration-500"></i>
+                                <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/40 backdrop-blur-md">Mobile Web</span>
+                            </div>
+                            <!-- Card Content -->
+                            <div class="p-6 space-y-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 font-medium">PWA</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-500 font-medium">React</span>
+                                    <span class="text-xs px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-500 font-medium">Tailwind</span>
+                                </div>
+                                <h3 class="text-xl font-bold">FitTrack PWA</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Application web progressive pour le suivi de séances de sport utilisable hors-ligne.</p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-200/50 dark:border-slate-800/50">
+                            <button onclick="openStarModal('starProject3')" class="text-xs font-semibold text-cyan-500 hover:text-cyan-600 flex items-center space-x-1">
+                                <span>Fiche STAR</span>
+                                <i class="fa-solid fa-circle-info"></i>
+                            </button>
+                            <div class="flex space-x-3 text-slate-500 dark:text-slate-400">
+                                <a href="#" onclick="alert('Lien Démo de démonstration'); return false;" class="hover:text-cyan-500"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <a href="https://github.com" target="_blank" class="hover:text-cyan-500"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TÉMOIGNAGES -->
+        <section id="temoignages" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <h2 class="text-xs font-bold text-cyan-500 uppercase tracking-widest">Recommandations</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold tracking-tight">Ce qu'on dit de moi</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl relative space-y-4">
+                        <i class="fa-solid fa-quote-left text-4xl text-cyan-500/20 absolute top-6 right-6"></i>
+                        <p class="text-slate-600 dark:text-slate-300 italic leading-relaxed">
+                            "Alex a fait preuve d'une autonomie remarquable lors de la refonte de notre plateforme. Sa capacité à comprendre les enjeux métier tout en livrant un code propre et performant est impressionnante."
+                        </p>
+                        <div class="flex items-center space-x-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg">
+                                LD
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Laurent Dupont</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">CTO @ TechInnovate</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl relative space-y-4">
+                        <i class="fa-solid fa-quote-left text-4xl text-indigo-500/20 absolute top-6 right-6"></i>
+                        <p class="text-slate-600 dark:text-slate-300 italic leading-relaxed">
+                            "Un plaisir de travailler avec Alex. Très rigoureux sur les détails UX/UI et toujours force de proposition lors des réunions d'équipe Agile."
+                        </p>
+                        <div class="flex items-center space-x-4 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+                                SM
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Sophie Martin</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Lead Product Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FORMULAIRE DE CONTACT -->
+        <section id="contact" class="py-20 bg-slate-100/50 dark:bg-slate-900/40">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="glass-card p-8 sm:p-12 rounded-3xl shadow-xl space-y-8">
+                    <div class="text-center space-y-3">
+                        <h2 class="text-xs font-bold text-cyan-500 uppercase tracking-widest">Restons en contact</h2>
+                        <p class="text-3xl font-extrabold tracking-tight">Démarrons un projet ensemble</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Une question ou une opportunité ? Laissez-moi un message ci-dessous.</p>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Votre Nom</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all text-sm" placeholder="Jean Dupont">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Votre Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all text-sm" placeholder="jean@exemple.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Sujet</label>
+                            <input type="text" id="subject" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all text-sm" placeholder="Proposition de projet / Opportunité">
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Message</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all text-sm resize-none" placeholder="Bonjour Alex, je souhaiterais échanger avec vous concernant..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all">
+                            Envoyer le message
+                        </button>
+                    </form>
+
+                    <!-- Alert / Feedback Box -->
+                    <div id="formFeedback" class="hidden p-4 rounded-xl text-sm font-medium text-center"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-10 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500 dark:text-slate-400">
+            <div>
+                <p>© 2026 Alex. Tous droits réservés. Construit pour GitHub Pages.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#accueil" class="hover:text-cyan-500 transition-colors">Haut de page</a>
+                <a href="https://github.com" target="_blank" class="hover:text-cyan-500 transition-colors">GitHub</a>
+                <a href="https://linkedin.com" target="_blank" class="hover:text-cyan-500 transition-colors">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALES STAR POUR LES PROJETS -->
+    
+    <!-- Modal Projet 1 -->
+    <div id="starProject1" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-slate-900 text-slate-100 max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('starProject1')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="border-b border-slate-800 pb-4">
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Fiche Détaillée Méthode STAR</span>
+                <h3 class="text-2xl font-bold mt-1">E-Commerce SaaS "ShopFlow"</h3>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-400 mb-1">📍 S - Situation</h4>
+                    <p class="text-slate-300">Un client e-commerce faisait face à un taux d'abandon de panier élevé (68 %) dû à un processus de paiement trop long et non optimisé pour mobile.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-400 mb-1">🎯 T - Tâche</h4>
+                    <p class="text-slate-300">Refondre intégralement le parcours d'achat web et mobile en créant une Web App ultra-rapide connectée à Stripe avec gestion de panier temps réel.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-400 mb-1">⚙️ A - Action</h4>
+                    <p class="text-slate-300">Développement de l'UI sous React/Tailwind avec state management optimisé. Mise en place d'un serveur Node.js sécurisé pour la gestion des Webhooks Stripe et création d'un système de mise en cache avec Redis.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-emerald-500">
+                    <h4 class="font-bold text-emerald-400 mb-1">🏆 R - Résultat</h4>
+                    <p class="text-slate-300">Réduction du temps de chargement des pages de 45 %. Hausse des conversions de +22 % dès le premier mois de mise en ligne.</p>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal('starProject1')" class="px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold text-sm">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projet 2 -->
+    <div id="starProject2" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-slate-900 text-slate-100 max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('starProject2')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="border-b border-slate-800 pb-4">
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Fiche Détaillée Méthode STAR</span>
+                <h3 class="text-2xl font-bold mt-1">API Gateway & Auth Service</h3>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-400 mb-1">📍 S - Situation</h4>
+                    <p class="text-slate-300">Chaque microservice de l'entreprise utilisait son propre système d'authentification, créant des failles de sécurité et une duplication de code importante.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-400 mb-1">🎯 T - Tâche</h4>
+                    <p class="text-slate-300">Centraliser la gestion des identités et des autorisations en développant une API Gateway unique et robuste.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-400 mb-1">⚙️ A - Action</h4>
+                    <p class="text-slate-300">Conception de l'API sous Express/TypeScript avec JWT (Access & Refresh tokens) et gestion de rôles (RBAC). Implémentation d'un rate-limiting contre les attaques par force brute.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-emerald-500">
+                    <h4 class="font-bold text-emerald-400 mb-1">🏆 R - Résultat</h4>
+                    <p class="text-slate-300">Standardisation de l'authentification sur 5 applications internes et amélioration des audits de sécurité à 100 %.</p>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal('starProject2')" class="px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold text-sm">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Projet 3 -->
+    <div id="starProject3" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-slate-900 text-slate-100 max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('starProject3')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="border-b border-slate-800 pb-4">
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Fiche Détaillée Méthode STAR</span>
+                <h3 class="text-2xl font-bold mt-1">FitTrack PWA</h3>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-cyan-500">
+                    <h4 class="font-bold text-cyan-400 mb-1">📍 S - Situation</h4>
+                    <p class="text-slate-300">Les utilisateurs en salle de sport se plaignaient du manque de réseau mobile pour accéder à leur programme d'entraînement sur le web.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-400 mb-1">🎯 T - Tâche</h4>
+                    <p class="text-slate-300">Créer une Progressive Web App (PWA) capable de fonctionner intégralement hors-ligne avec synchronisation dès le retour de la connexion.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-purple-500">
+                    <h4 class="font-bold text-purple-400 mb-1">⚙️ A - Action</h4>
+                    <p class="text-slate-300">Utilisation d'IndexedDB pour la persistance des données locales et mise en place de Service Workers pour le cache des assets static et requêtes.</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-emerald-500">
+                    <h4 class="font-bold text-emerald-400 mb-1">🏆 R - Résultat</h4>
+                    <p class="text-slate-300">Expérience utilisateur fluide sans coupure et installation directe de l'application sur l'écran d'accueil des utilisateurs.</p>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal('starProject3')" class="px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold text-sm">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. MODAL GUIDE DÉPLOIEMENT GITHUB PAGES -->
+    <div id="githubGuideModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card bg-slate-900 text-slate-100 max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('githubGuideModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="border-b border-slate-800 pb-4 flex items-center space-x-3">
+                <i class="fa-brands fa-github text-3xl text-cyan-400"></i>
+                <div>
+                    <h3 class="text-xl font-bold">Comment mettre ce site en ligne sur GitHub Pages ?</h3>
+                    <p class="text-xs text-slate-400">Guide rapide en 4 étapes simples (Gratuit à 100%)</p>
+                </div>
+            </div>
+
+            <ol class="space-y-4 text-sm text-slate-300 list-decimal list-inside">
+                <li class="bg-slate-800/60 p-3.5 rounded-xl">
+                    <strong class="text-white">Enregistre ce fichier :</strong> Copie l'intégralité du code et enregistre-le sous le nom exact <code class="bg-slate-950 text-cyan-400 px-2 py-0.5 rounded font-mono">index.html</code> sur ton ordinateur.
+                </li>
+                <li class="bg-slate-800/60 p-3.5 rounded-xl">
+                    <strong class="text-white">Crée un dépôt GitHub :</strong> Va sur GitHub, crée un nouveau dépôt public nommé exactement : <code class="bg-slate-950 text-cyan-400 px-2 py-0.5 rounded font-mono">votre-pseudo.github.io</code>.
+                </li>
+                <li class="bg-slate-800/60 p-3.5 rounded-xl">
+                    <strong class="text-white">Publie le fichier :</strong> Ajoute et commite ton fichier <code class="bg-slate-950 text-cyan-400 px-2 py-0.5 rounded font-mono">index.html</code> à la racine de ce dépôt.
+                </li>
+                <li class="bg-slate-800/60 p-3.5 rounded-xl">
+                    <strong class="text-white">Active GitHub Pages :</strong> Dans ton dépôt, va dans <em>Settings &gt; Pages</em>, choisis la branche <code class="bg-slate-950 text-cyan-400 px-2 py-0.5 rounded font-mono">main</code> et sauvegarde. Ton site sera en ligne sous 2 minutes !
+                </li>
+            </ol>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeModal('githubGuideModal')" class="px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold text-sm">J'ai compris !</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Theme Management (Dark/Light Mode)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeToggleMobileBtn = document.getElementById('themeToggleMobile');
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. Skills Filtering Logic
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const tabs = document.querySelectorAll('.skill-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-indigo-600', 'text-white', 'shadow-md');
+                tab.classList.add('glass', 'text-slate-700', 'dark:text-slate-300');
+            });
+
+            event.target.classList.remove('glass', 'text-slate-700', 'dark:text-slate-300');
+            event.target.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-indigo-600', 'text-white', 'shadow-md');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 4. Projects Filtering Logic
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const tabs = document.querySelectorAll('.project-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-indigo-600', 'text-white', 'shadow-md');
+                tab.classList.add('glass', 'text-slate-700', 'dark:text-slate-300');
+            });
+
+            event.target.classList.remove('glass', 'text-slate-700', 'dark:text-slate-300');
+            event.target.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-indigo-600', 'text-white', 'shadow-md');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. Modals Management
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function openStarModal(id) {
+            openModal(id);
+        }
+
+        // Close modal when clicking outside box
+        window.onclick = function(event) {
+            if (event.target.classList.contains('backdrop-blur-sm')) {
+                event.target.classList.add('hidden');
+                event.target.classList.remove('flex');
+            }
+        };
+
+        // 6. Contact Form Logic
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.innerText = 'Envoi en cours...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                feedback.classList.remove('hidden', 'bg-red-500/10', 'text-red-500');
+                feedback.classList.add('bg-emerald-500/10', 'text-emerald-500', 'border', 'border-emerald-500/20');
+                feedback.innerText = '✨ Merci ! Votre message a bien été envoyé. Je vous répondrai sous 24h.';
+
+                submitBtn.innerText = 'Envoyer le message';
+                submitBtn.disabled = false;
+                document.getElementById('contactForm').reset();
+            }, 1200);
+        }
+
+        // 7. Fake CV Download Feedback
+        function fakeDownloadCV(e) {
+            e.preventDefault();
+            alert("📄 Téléchargement du CV simulé !\n\nVous pourrez remplacer ce lien par l'URL de votre propre fichier CV.pdf.");
+        }
+    </script>
+</body>
+</html>
