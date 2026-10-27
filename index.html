@@ -22,12 +22,13 @@
     </script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Style personnalisé pour animations fluides -->
     <style>
+        /* Animation au défilement */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
         .reveal.active {
             opacity: 1;
@@ -35,159 +36,175 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-slate-50 via-white to-slate-50 text-slate-900 dark:from-darkbg dark:via-darkbg dark:to-darkcard dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-100 selection:text-n7blue">
+<body class="bg-slate-50 text-slate-900 dark:bg-darkbg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-    <!-- NAVBAR DYNAMIQUE -->
-    <header class="sticky top-0 z-50 bg-white/80 dark:bg-darkbg/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60">
+    <!-- NAVBAR DYNAMIQUE AVEC ACCENTS COLORÉS -->
+    <header class="sticky top-0 z-50 bg-white/85 dark:bg-darkbg/85 backdrop-blur-md border-b border-blue-100 dark:border-slate-800">
         <div class="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#welcome" class="group flex items-center space-x-3">
-                <span class="font-semibold text-base tracking-tight group-hover:text-n7blue transition-colors">William Darolle</span>
-                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-50 text-n7blue dark:bg-blue-950/60 dark:text-blue-300 font-semibold border border-blue-200/50 dark:border-blue-800/40">3EA</span>
+                <span class="font-bold text-base tracking-tight text-slate-900 dark:text-white group-hover:text-n7blue dark:group-hover:text-blue-400 transition-colors">William Darolle</span>
+                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-blue-100 text-n7blue dark:bg-blue-900/60 dark:text-blue-300 font-bold border border-blue-200 dark:border-blue-700/50 shadow-sm">3EA</span>
             </a>
 
-            <!-- NAVIGATION (ONGLET PROJETS DÉDIÉ) -->
-            <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold tracking-wide uppercase">
-                <a href="#welcome" class="nav-link text-n7blue dark:text-blue-400" data-fr="Accueil" data-en="Home">Accueil</a>
-                <a href="#skills" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Compétences" data-en="Skills">Compétences</a>
-                <a href="#projects" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Projets" data-en="Projects">Projets</a>
-                <a href="#mobility" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Mobilité" data-en="Mobility">Mobilité</a>
-                <a href="#engagement" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Engagement" data-en="Engagement">Engagement</a>
-                <a href="#sports" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Sports" data-en="Sports">Sports</a>
+            <!-- NAVIGATION -->
+            <nav class="hidden md:flex items-center space-x-6 text-xs font-bold tracking-wide uppercase">
+                <a href="#welcome" class="nav-link text-n7blue dark:text-blue-400 hover:scale-105 transition-transform" data-fr="Accueil" data-en="Home">Accueil</a>
+                <a href="#skills" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400 hover:scale-105 transition-transform" data-fr="Compétences" data-en="Skills">Compétences</a>
+                <a href="#projects" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400 hover:scale-105 transition-transform" data-fr="Projets" data-en="Projects">Projets</a>
+                <a href="#mobility" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400 hover:scale-105 transition-transform" data-fr="Mobilité" data-en="Mobility">Mobilité</a>
+                <a href="#engagement" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400 hover:scale-105 transition-transform" data-fr="Engagement" data-en="Engagement">Engagement</a>
+                <a href="#sports" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400 hover:scale-105 transition-transform" data-fr="Sports" data-en="Sports">Sports</a>
             </nav>
 
-            <!-- CONTROLS -->
+            <!-- CONTROLS BOUTONS -->
             <div class="flex items-center space-x-3">
-                <button id="langToggle" onclick="toggleLanguage()" class="text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-darkcard hover:border-n7blue dark:hover:border-blue-400 transition-colors shadow-sm">
+                <button id="langToggle" onclick="toggleLanguage()" class="text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-xl border border-blue-200 dark:border-slate-700 bg-blue-50/50 dark:bg-darkcard text-n7blue dark:text-blue-300 hover:bg-n7blue hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-sm active:scale-95">
                     <span id="langText">EN 🇬🇧</span>
                 </button>
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-darkcard text-slate-600 dark:text-slate-300 hover:text-n7blue dark:hover:text-white transition-colors shadow-sm">
+                <button onclick="toggleDarkMode()" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-darkcard text-amber-500 dark:text-blue-400 hover:scale-110 transition-transform shadow-sm">
                     <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
-                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                    <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-700"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12 space-y-24">
+    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12 space-y-20">
 
         <!-- SECTION WELCOME (ACCUEIL) -->
-        <section id="welcome" class="pt-6 space-y-12 reveal">
+        <section id="welcome" class="pt-4 space-y-12 reveal active">
             
-            <!-- HEADER PROFIL (PHOTO COULEUR) -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-200/60 dark:border-slate-800/60 pb-12">
+            <!-- HERO CARD COLORÉE ET INTERACTIVE -->
+            <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-white via-blue-50/30 to-slate-50 dark:from-darkcard dark:via-darkcard dark:to-slate-900/80 border border-blue-100 dark:border-slate-800 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-8">
                 <div class="space-y-4 max-w-xl">
-                    <div class="inline-flex items-center space-x-2 text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <div class="inline-flex items-center space-x-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-100/70 dark:bg-emerald-950/70 px-3.5 py-1 rounded-full border border-emerald-300/60 dark:border-emerald-800 shadow-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
                         <span data-fr="Étudiant Ingénieur 3EA — Toulouse INP-ENSEEIHT" data-en="3EA Engineering Student — Toulouse INP-ENSEEIHT">Étudiant Ingénieur 3EA — Toulouse INP-ENSEEIHT</span>
                     </div>
 
-                    <h1 class="text-4xl sm:text-5xl font-light tracking-tight text-slate-900 dark:text-white">
-                        William <span class="font-semibold text-n7blue dark:text-blue-400">Darolle</span>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                        William <span class="text-transparent bg-clip-text bg-gradient-to-r from-n7blue via-blue-600 to-indigo-600 dark:from-blue-400 dark:to-cyan-400">Darolle</span>
                     </h1>
 
-                    <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed font-normal" data-fr="Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale." data-en="Currently a first-year engineering student at ENSEEIHT specializing in 3EA (Electronics, Electrical Energy & Automation), I am aiming to build my career in the aerospace industry. I am passionate about embedded electronics and smart systems. Driven and methodical, I am eager to contribute to hands-on projects and pursue international mobility opportunities.">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal" data-fr="Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale." data-en="Currently a first-year engineering student at ENSEEIHT specializing in 3EA (Electronics, Electrical Energy & Automation), I am aiming to build my career in the aerospace industry. I am passionate about embedded electronics and smart systems. Driven and methodical, I am eager to contribute to hands-on projects and pursue international mobility opportunities.">
                         Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale.
                     </p>
 
-                    <!-- CV BUTTONS -->
-                    <div class="pt-2 flex flex-wrap gap-4 text-xs font-semibold">
-                        <a href="cv_fr.pdf" target="_blank" class="inline-flex items-center space-x-2 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 rounded-xl hover:bg-n7blue dark:hover:bg-blue-400 transition-colors shadow-sm">
+                    <!-- BOUTONS CV AVEC EFFET HOVER -->
+                    <div class="pt-2 flex flex-wrap gap-4 text-xs font-bold">
+                        <a href="cv_fr.pdf" target="_blank" class="inline-flex items-center space-x-2 bg-n7blue text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md">
                             <i data-lucide="file-text" class="w-4 h-4"></i>
                             <span data-fr="CV (FR)" data-en="Resume (FR)">CV (FR)</span>
                         </a>
-                        <a href="cv_en.pdf" target="_blank" class="inline-flex items-center space-x-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-darkcard text-slate-700 dark:text-slate-300 px-4 py-2 rounded-xl hover:border-n7blue dark:hover:border-blue-400 transition-colors shadow-sm">
+                        <a href="cv_en.pdf" target="_blank" class="inline-flex items-center space-x-2 border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-darkcard text-slate-800 dark:text-slate-200 px-5 py-2.5 rounded-xl hover:border-n7blue hover:text-n7blue dark:hover:border-blue-400 dark:hover:text-blue-400 hover:-translate-y-0.5 transition-all shadow-sm">
                             <i data-lucide="file-text" class="w-4 h-4"></i>
                             <span data-fr="Resume (EN)" data-en="Resume (EN)">Resume (EN)</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- PORTRAIT PHOTO COULEUR -->
-                <div class="flex-shrink-0">
-                    <img src="photo.jpg" alt="William Darolle" class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover shadow-md border-2 border-white dark:border-slate-800 hover:scale-105 transition-transform duration-300">
+                <!-- PHOTO COULEUR AVEC SURVOL INTERACTIF -->
+                <div class="flex-shrink-0 mx-auto md:mx-0">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-n7blue via-indigo-500 to-cyan-400 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+                        <img src="photo.jpg" alt="William Darolle" class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl object-cover shadow-lg border-2 border-white dark:border-slate-800 transform group-hover:scale-105 transition-all duration-300">
+                    </div>
                 </div>
             </div>
 
-            <!-- ELEVATOR PITCH SECTION -->
+            <!-- ELEVATOR PITCH INTERACTIF -->
             <div class="space-y-4 pt-2">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Présentation Vidéo" data-en="Video Pitch">Présentation Vidéo</h2>
-                <div class="relative w-full aspect-video bg-white dark:bg-darkcard rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center group shadow-sm hover:border-n7blue/50 transition-colors">
-                    <div class="text-center space-y-3 p-6">
-                        <div class="w-14 h-14 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-n7blue dark:text-blue-300 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-sm">
-                            <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                    <span data-fr="Présentation Vidéo" data-en="Video Pitch">Présentation Vidéo</span>
+                </h2>
+                <div class="relative w-full aspect-video bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl overflow-hidden border border-slate-700 shadow-lg flex items-center justify-center group cursor-pointer hover:border-blue-400 transition-all">
+                    <div class="text-center space-y-4 p-6">
+                        <div class="w-16 h-16 bg-blue-600/90 text-white rounded-full flex items-center justify-center mx-auto group-hover:scale-110 group-hover:bg-blue-500 transition-all shadow-xl">
+                            <i data-lucide="play" class="w-8 h-8 fill-current ml-1"></i>
                         </div>
-                        <p class="text-xs font-semibold text-slate-600 dark:text-slate-300" data-fr="Elevator Pitch (2-3 min en anglais — Intégration à venir)" data-en="Elevator Pitch (2-3 min in English — Integration coming soon)">
+                        <p class="text-xs font-bold tracking-wide" data-fr="Elevator Pitch (2-3 min en anglais — Intégration à venir)" data-en="Elevator Pitch (2-3 min in English — Integration coming soon)">
                             Elevator Pitch (2-3 min en anglais — Intégration à venir)
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- TIMELINE PARCOURS -->
-            <div class="space-y-6 pt-6">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Parcours Académique" data-en="Education Path">Parcours Académique</h2>
+            <!-- PARCOURS ACADÉMIQUE -->
+            <div class="space-y-6 pt-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                    <span data-fr="Parcours Académique" data-en="Education Path">Parcours Académique</span>
+                </h2>
                 <div class="space-y-4">
-                    <div class="p-4 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:border-n7blue/40 transition-colors">
+                    <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border-l-4 border-l-n7blue border-y border-r border-slate-200/80 dark:border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:shadow-md hover:translate-x-1 transition-all">
                         <div>
                             <h3 class="font-bold text-sm text-slate-900 dark:text-white">ENSEEIHT — Toulouse</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Filière 3EA — Électronique, Énergie Électrique, Automatique" data-en="3EA Specialty — Electronics, Electrical Energy, Automation">Filière 3EA — Électronique, Énergie Électrique, Automatique</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Filière 3EA — Électronique, Énergie Électrique, Automatique" data-en="3EA Specialty — Electronics, Electrical Energy, Automation">Filière 3EA — Électronique, Énergie Électrique, Automatique</p>
                         </div>
-                        <span class="text-xs font-mono font-bold text-n7blue dark:text-blue-400">2026 — 2029</span>
+                        <span class="text-xs font-mono font-bold text-n7blue dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">2026 — 2029</span>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:border-n7blue/40 transition-colors">
+                    <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border-l-4 border-l-indigo-500 border-y border-r border-slate-200/80 dark:border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:shadow-md hover:translate-x-1 transition-all">
                         <div>
                             <h3 class="font-bold text-sm text-slate-900 dark:text-white">Prépa T² — Toulouse</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Classe préparatoire aux grandes écoles" data-en="Preparatory class for French Engineering Grandes Écoles">Classe préparatoire aux grandes écoles</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Classe préparatoire aux grandes écoles" data-en="Preparatory class for French Engineering Grandes Écoles">Classe préparatoire aux grandes écoles</p>
                         </div>
-                        <span class="text-xs font-mono text-slate-400">2024 — 2026</span>
+                        <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">2024 — 2026</span>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:border-n7blue/40 transition-colors">
+                    <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border-l-4 border-l-cyan-500 border-y border-r border-slate-200/80 dark:border-slate-800 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 shadow-sm hover:shadow-md hover:translate-x-1 transition-all">
                         <div>
                             <h3 class="font-bold text-sm text-slate-900 dark:text-white">Lycée Cantau — Anglet</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport" data-en="General Baccalaureate (Honors) — Majors in Math & Physics, Options in Advanced Math & Sport">Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport" data-en="General Baccalaureate (Honors) — Majors in Math & Physics, Options in Advanced Math & Sport">Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport</p>
                         </div>
-                        <span class="text-xs font-mono text-slate-400">2024</span>
+                        <span class="text-xs font-mono font-bold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md">2024</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION SKILLS (COMPÉTENCES) -->
-        <section id="skills" class="space-y-8 pt-6 reveal">
-            <div class="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Compétences & Outils" data-en="Skills & Tools">Compétences & Outils</h2>
+        <section id="skills" class="space-y-8 pt-4 reveal">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="code-2" class="w-4 h-4"></i>
+                    <span data-fr="Compétences & Outils" data-en="Skills & Tools">Compétences & Outils</span>
+                </h2>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="p-5 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider" data-fr="Langages" data-en="Languages">Langages</h3>
-                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 font-mono">
-                        <li class="flex items-center space-x-2"><i data-lucide="code" class="w-3.5 h-3.5 text-n7blue"></i><span>Python</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="cpu" class="w-3.5 h-3.5 text-n7blue"></i><span>Langage C</span></li>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <!-- Card 1 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border border-blue-100 dark:border-slate-800 space-y-3 shadow-sm hover:border-n7blue hover:shadow-md hover:-translate-y-1 transition-all group">
+                    <h3 class="text-xs font-bold text-n7blue dark:text-blue-400 uppercase tracking-wider" data-fr="Langages" data-en="Languages">Langages</h3>
+                    <ul class="text-xs font-semibold text-slate-700 dark:text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center space-x-2"><i data-lucide="code" class="w-4 h-4 text-blue-500 group-hover:rotate-12 transition-transform"></i><span>Python</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="cpu" class="w-4 h-4 text-blue-500 group-hover:rotate-12 transition-transform"></i><span>Langage C</span></li>
                     </ul>
                 </div>
 
-                <div class="p-5 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Simulation</h3>
-                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 font-mono">
-                        <li class="flex items-center space-x-2"><i data-lucide="binary" class="w-3.5 h-3.5 text-n7blue"></i><span>NumPy</span></li>
+                <!-- Card 2 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border border-indigo-100 dark:border-slate-800 space-y-3 shadow-sm hover:border-indigo-500 hover:shadow-md hover:-translate-y-1 transition-all group">
+                    <h3 class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Simulation</h3>
+                    <ul class="text-xs font-semibold text-slate-700 dark:text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center space-x-2"><i data-lucide="binary" class="w-4 h-4 text-indigo-500 group-hover:rotate-12 transition-transform"></i><span>NumPy</span></li>
                     </ul>
                 </div>
 
-                <div class="p-5 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider" data-fr="Outils" data-en="Tools">Outils</h3>
-                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2 font-mono">
-                        <li class="flex items-center space-x-2"><i data-lucide="laptop" class="w-3.5 h-3.5 text-n7blue"></i><span>macOS</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="terminal" class="w-3.5 h-3.5 text-n7blue"></i><span>VS Code</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="git-branch" class="w-3.5 h-3.5 text-n7blue"></i><span>Git / GitHub</span></li>
+                <!-- Card 3 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border border-cyan-100 dark:border-slate-800 space-y-3 shadow-sm hover:border-cyan-500 hover:shadow-md hover:-translate-y-1 transition-all group">
+                    <h3 class="text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider" data-fr="Outils" data-en="Tools">Outils</h3>
+                    <ul class="text-xs font-semibold text-slate-700 dark:text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center space-x-2"><i data-lucide="laptop" class="w-4 h-4 text-cyan-500 group-hover:rotate-12 transition-transform"></i><span>macOS</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="terminal" class="w-4 h-4 text-cyan-500 group-hover:rotate-12 transition-transform"></i><span>VS Code</span></li>
+                        <li class="flex items-center space-x-2"><i data-lucide="git-branch" class="w-4 h-4 text-cyan-500 group-hover:rotate-12 transition-transform"></i><span>Git / GitHub</span></li>
                     </ul>
                 </div>
 
-                <div class="p-5 rounded-xl bg-white dark:bg-darkcard border border-slate-200/60 dark:border-slate-800/60 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Soft Skills</h3>
-                    <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+                <!-- Card 4 -->
+                <div class="p-5 rounded-2xl bg-white dark:bg-darkcard border border-emerald-100 dark:border-slate-800 space-y-3 shadow-sm hover:border-emerald-500 hover:shadow-md hover:-translate-y-1 transition-all group">
+                    <h3 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Soft Skills</h3>
+                    <ul class="text-xs font-medium text-slate-700 dark:text-slate-300 space-y-2">
                         <li data-fr="• Esprit d'équipe" data-en="• Teamwork">• Esprit d'équipe</li>
                         <li data-fr="• Esprit analytique" data-en="• Analytical thinking">• Esprit analytique</li>
                         <li data-fr="• Adaptabilité" data-en="• Adaptability">• Adaptabilité</li>
@@ -197,84 +214,101 @@
             </div>
         </section>
 
-        <!-- SECTION PROJETS (ONGLET DÉDIÉ) -->
-        <section id="projects" class="space-y-6 pt-6 reveal">
-            <div class="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Projets Académiques & Personnels" data-en="Academic & Personal Projects">Projets Académiques & Personnels</h2>
+        <!-- SECTION PROJETS (ONGLET DÉDIÉ INTERACTIF) -->
+        <section id="projects" class="space-y-6 pt-4 reveal">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="folder-kanban" class="w-4 h-4"></i>
+                    <span data-fr="Projets Académiques & Personnels" data-en="Academic & Personal Projects">Projets Académiques & Personnels</span>
+                </h2>
             </div>
 
-            <div class="p-8 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 text-center space-y-3 shadow-sm">
-                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-950/60 text-n7blue dark:text-blue-300 rounded-full flex items-center justify-center mx-auto">
-                    <i data-lucide="folder-code" class="w-6 h-6"></i>
+            <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 dark:from-darkcard dark:to-slate-900 border border-blue-200/60 dark:border-slate-800 text-center space-y-4 shadow-sm hover:shadow-md transition-all">
+                <div class="w-14 h-14 bg-n7blue text-white rounded-2xl flex items-center justify-center mx-auto shadow-md">
+                    <i data-lucide="folder-code" class="w-7 h-7"></i>
                 </div>
-                <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-fr="Espace Projets en Construction" data-en="Project Space Under Construction">
-                    Espace Projets en Construction
+                <h3 class="text-base font-bold text-slate-900 dark:text-white" data-fr="Espace Projets" data-en="Project Hub">
+                    Espace Projets
                 </h3>
-                <p class="text-xs text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed" data-fr="Mes futurs projets académiques et personnels seront renseignés ici au fur et à mesure de ma scolarité." data-en="My future academic and personal projects will be updated here as I progress through my studies.">
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-lg mx-auto leading-relaxed font-medium" data-fr="Mes futurs projets académiques et personnels seront renseignés ici au fur et à mesure de ma scolarité." data-en="My future academic and personal projects will be updated here as I progress through my studies.">
                     Mes futurs projets académiques et personnels seront renseignés ici au fur et à mesure de ma scolarité.
                 </p>
             </div>
         </section>
 
         <!-- SECTION MOBILITÉ -->
-        <section id="mobility" class="space-y-6 pt-6 reveal">
-            <div class="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Projets de Mobilité" data-en="Mobility Projects">Projets de Mobilité</h2>
+        <section id="mobility" class="space-y-6 pt-4 reveal">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span data-fr="Projets de Mobilité" data-en="Mobility Projects">Projets de Mobilité</span>
+                </h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-3 shadow-sm hover:border-n7blue/40 transition-colors">
-                    <span class="text-[10px] font-mono font-bold text-n7blue dark:text-blue-400 uppercase">Projet 01</span>
-                    <h3 class="text-sm font-bold" data-fr="Échange Académique" data-en="Academic Exchange">Échange Académique</h3>
+                <!-- Card 1 -->
+                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-n7blue hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <span class="text-[11px] font-mono font-bold text-n7blue dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">PROJET 01</span>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-n7blue transition-colors" data-fr="Échange Académique" data-en="Academic Exchange">Échange Académique</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
-                <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-3 shadow-sm hover:border-n7blue/40 transition-colors">
-                    <span class="text-[10px] font-mono font-bold text-n7blue dark:text-blue-400 uppercase">Projet 02</span>
-                    <h3 class="text-sm font-bold" data-fr="Immersion Culturelle" data-en="Cultural Immersion">Immersion Culturelle</h3>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <span class="text-[11px] font-mono font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-md">PROJET 02</span>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors" data-fr="Immersion Culturelle" data-en="Cultural Immersion">Immersion Culturelle</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
-                <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-3 shadow-sm hover:border-n7blue/40 transition-colors">
-                    <span class="text-[10px] font-mono font-bold text-n7blue dark:text-blue-400 uppercase">Projet 03</span>
-                    <h3 class="text-sm font-bold" data-fr="Stage à l'Étranger" data-en="Internship Abroad">Stage à l'Étranger</h3>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-cyan-500 hover:shadow-lg hover:-translate-y-1 transition-all group">
+                    <span class="text-[11px] font-mono font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/60 px-2.5 py-1 rounded-md">PROJET 03</span>
+                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors" data-fr="Stage à l'Étranger" data-en="Internship Abroad">Stage à l'Étranger</h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
             </div>
         </section>
 
         <!-- SECTION ENGAGEMENT -->
-        <section id="engagement" class="space-y-6 pt-6 reveal">
-            <div class="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Engagement RSE & Sociétal" data-en="Sustainability & Engagement">Engagement RSE & Sociétal</h2>
+        <section id="engagement" class="space-y-6 pt-4 reveal">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="leaf" class="w-4 h-4"></i>
+                    <span data-fr="Engagement RSE & Sociétal" data-en="Sustainability & Engagement">Engagement RSE & Sociétal</span>
+                </h2>
             </div>
 
-            <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-2 shadow-sm">
-                <h3 class="text-sm font-bold" data-fr="Initiatives à venir" data-en="Upcoming Initiatives">Initiatives à venir</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux." data-en="Reserved space for your photos and descriptions of environmental and community engagements.">Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux.</p>
+            <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-emerald-200/60 dark:border-slate-800 space-y-2 shadow-sm hover:shadow-md transition-all">
+                <h3 class="text-sm font-bold text-emerald-700 dark:text-emerald-400" data-fr="Initiatives à venir" data-en="Upcoming Initiatives">Initiatives à venir</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux." data-en="Reserved space for your photos and descriptions of environmental and community engagements.">Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux.</p>
             </div>
         </section>
 
         <!-- SECTION SPORTS -->
-        <section id="sports" class="space-y-6 pt-6 reveal">
-            <div class="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-                <h2 class="text-xs uppercase tracking-widest font-bold text-n7blue dark:text-blue-400" data-fr="Sports & Passions" data-en="Sports & Hobbies">Sports & Passions</h2>
+        <section id="sports" class="space-y-6 pt-4 reveal">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-n7blue dark:text-blue-400 flex items-center space-x-2">
+                    <i data-lucide="trophy" class="w-4 h-4"></i>
+                    <span data-fr="Sports & Passions" data-en="Sports & Hobbies">Sports & Passions</span>
+                </h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-2 shadow-sm">
-                    <h3 class="text-sm font-bold" data-fr="Pratique Sportive" data-en="Sports Practice">Pratique Sportive</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter." data-en="Baccalaureate Sport Option at Cantau (Anglet). Photos and text coming soon.">Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter.</p>
+                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-orange-200/60 dark:border-slate-800 space-y-2 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-sm font-bold text-orange-600 dark:text-orange-400" data-fr="Pratique Sportive" data-en="Sports Practice">Pratique Sportive</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter." data-en="Baccalaureate Sport Option at Cantau (Anglet). Photos and text coming soon.">Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter.</p>
                 </div>
-                <div class="p-6 rounded-2xl bg-white dark:bg-darkcard border border-slate-200/80 dark:border-slate-800/80 space-y-2 shadow-sm">
-                    <h3 class="text-sm font-bold" data-fr="Centres d'Intérêt" data-en="Interests">Centres d'Intérêt</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Aéronautique, électronique et nouvelles technologies." data-en="Aeronautics, electronics, and tech innovations.">Aéronautique, électronique et nouvelles technologies.</p>
+                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-purple-200/60 dark:border-slate-800 space-y-2 shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-sm font-bold text-purple-600 dark:text-purple-400" data-fr="Centres d'Intérêt" data-en="Interests">Centres d'Intérêt</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Aéronautique, électronique et nouvelles technologies." data-en="Aeronautics, electronics, and tech innovations.">Aéronautique, électronique et nouvelles technologies.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER EPURE AVEC COPIE AUTOMATIQUE -->
-    <footer class="border-t border-slate-200/60 dark:border-slate-800/60 py-12 bg-white dark:bg-darkbg">
+    <!-- FOOTER INTERACTIF -->
+    <footer class="border-t border-blue-100 dark:border-slate-800 py-12 bg-white dark:bg-darkbg">
         <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500 dark:text-slate-400">
             <div>
                 <p class="font-bold text-slate-900 dark:text-white">William Darolle</p>
@@ -282,11 +316,11 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-6 font-semibold">
-                <button onclick="copyToClipboard('William.darolle@etu.toulouse-inp.fr', 'mailText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5">
+                <button onclick="copyToClipboard('William.darolle@etu.toulouse-inp.fr', 'mailText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5 bg-blue-50 dark:bg-darkcard px-3 py-1.5 rounded-lg border border-blue-100 dark:border-slate-800">
                     <i data-lucide="mail" class="w-3.5 h-3.5 text-n7blue"></i>
                     <span id="mailText">William.darolle@etu.toulouse-inp.fr</span>
                 </button>
-                <button onclick="copyToClipboard('0766247091', 'phoneText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5">
+                <button onclick="copyToClipboard('0766247091', 'phoneText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5 bg-blue-50 dark:bg-darkcard px-3 py-1.5 rounded-lg border border-blue-100 dark:border-slate-800">
                     <i data-lucide="phone" class="w-3.5 h-3.5 text-n7blue"></i>
                     <span id="phoneText">07 66 24 70 91</span>
                 </button>
@@ -323,20 +357,21 @@
             setTimeout(() => { el.innerText = originalText; }, 2000);
         }
 
-        // Animation d'apparition au scroll
+        // Script Scroll Reveal optimisé pour déclenchement fluide au défilement
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
-            for (let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const elementTop = reveals[i].getBoundingClientRect().top;
-                const elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
+                    el.classList.add('active');
                 }
-            }
+            });
         }
+
         window.addEventListener('scroll', reveal);
-        reveal();
+        document.addEventListener('DOMContentLoaded', reveal);
+        setTimeout(reveal, 100);
     </script>
 </body>
 </html>
