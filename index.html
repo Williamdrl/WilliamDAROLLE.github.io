@@ -13,8 +13,9 @@
                 extend: {
                     colors: {
                         n7blue: '#0055A5',
-                        darkbg: '#0F172A',
-                        darkcard: '#1E293B'
+                        accent: '#2563EB',
+                        darkbg: '#0B0F19',
+                        darkcard: '#111827'
                     }
                 }
             }
@@ -23,33 +24,31 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans">
+<body class="bg-white text-slate-900 dark:bg-darkbg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-100 selection:text-n7blue">
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-50 bg-white/80 dark:bg-darkcard/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="#welcome" class="font-bold text-lg tracking-tight hover:text-n7blue transition-colors">
-                William Darolle <span class="text-xs font-normal text-slate-500 dark:text-slate-400">| ENSEEIHT 3EA</span>
+    <!-- NAVBAR ÉPURÉE -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-darkbg/90 backdrop-blur-md border-b border-slate-100 dark:border-slate-800/60">
+        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#welcome" class="group flex items-center space-x-3">
+                <span class="font-semibold text-base tracking-tight group-hover:text-n7blue transition-colors">William Darolle</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 font-medium">3EA</span>
             </a>
 
-            <!-- NAVIGATION LINKS -->
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                <a href="#welcome" class="nav-link text-n7blue dark:text-blue-400" data-fr="Accueil" data-en="Welcome">Accueil</a>
-                <a href="#engineering" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400" data-fr="Projets & Compétences" data-en="Engineering">Projets & Compétences</a>
-                <a href="#mobility" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400" data-fr="Mobilité" data-en="Mobility">Mobilité</a>
-                <a href="#engagement" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400" data-fr="Engagement" data-en="Engagement">Engagement</a>
-                <a href="#sports" class="nav-link text-slate-600 hover:text-n7blue dark:text-slate-300 dark:hover:text-blue-400" data-fr="Sports & Loisirs" data-en="Sports">Sports & Loisirs</a>
+            <!-- NAVIGATION -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wide uppercase">
+                <a href="#welcome" class="nav-link text-n7blue dark:text-blue-400" data-fr="Accueil" data-en="Home">Accueil</a>
+                <a href="#engineering" class="nav-link text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Compétences" data-en="Skills">Compétences</a>
+                <a href="#mobility" class="nav-link text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Mobilité" data-en="Mobility">Mobilité</a>
+                <a href="#engagement" class="nav-link text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Engagement" data-en="Engagement">Engagement</a>
+                <a href="#sports" class="nav-link text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" data-fr="Sports" data-en="Sports">Sports</a>
             </nav>
 
-            <!-- CONTROLS (Langue & Theme) -->
-            <div class="flex items-center space-x-3">
-                <!-- Langue -->
-                <button id="langToggle" onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <!-- CONTROLS -->
+            <div class="flex items-center space-x-4">
+                <button id="langToggle" onclick="toggleLanguage()" class="text-xs font-bold tracking-wider uppercase px-2.5 py-1 rounded border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <span id="langText">EN 🇬🇧</span>
                 </button>
-
-                <!-- Mode Sombre/Clair -->
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                <button onclick="toggleDarkMode()" class="p-1.5 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
                     <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
                     <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
                 </button>
@@ -57,328 +56,224 @@
         </div>
     </header>
 
-    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 space-y-16">
+    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12 space-y-24">
 
-        <!-- SECTION WELCOME -->
-        <section id="welcome" class="space-y-8">
-            <div class="grid md:grid-cols-12 gap-6 items-stretch">
-                <!-- CARTE PROFIL & ACCROCHE (Gauche) -->
-                <div class="md:col-span-7 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-sm">
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-4">
-                            <!-- Photo Portrait -->
-                            <img src="photo.jpg" alt="William Darolle" class="w-20 h-20 rounded-full object-cover border-2 border-n7blue shadow-md">
-                            <div>
-                                <span class="inline-block px-3 py-1 bg-blue-100 text-n7blue dark:bg-blue-900/50 dark:text-blue-300 text-xs font-semibold rounded-full mb-1">
-                                    ENSEEIHT · Filière 3EA
-                                </span>
-                                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">William Darolle</h1>
-                            </div>
-                        </div>
-
-                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed" data-fr="Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale." data-en="Currently a first-year engineering student at ENSEEIHT specializing in 3EA (Electronics, Electrical Energy & Automation), I am aiming to build my career in the aerospace industry. I am passionate about embedded electronics and smart systems. Driven and methodical, I am eager to contribute to hands-on projects and pursue international mobility opportunities.">
-                            Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale.
-                        </p>
+        <!-- SECTION WELCOME (HERO EPURE STYLE BELLOT / ABADIE) -->
+        <section id="welcome" class="pt-6 space-y-12">
+            
+            <!-- HEADER PROFIL -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-slate-100 dark:border-slate-800/60 pb-12">
+                <div class="space-y-4 max-w-xl">
+                    <div class="inline-flex items-center space-x-2 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-200/50 dark:border-emerald-800/40">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span data-fr="Étudiant Ingénieur 3EA — Toulouse INP-ENSEEIHT" data-en="3EA Engineering Student — Toulouse INP-ENSEEIHT">Étudiant Ingénieur 3EA — Toulouse INP-ENSEEIHT</span>
                     </div>
 
-                    <!-- BOUTONS ACTION (CV) -->
-                    <div class="pt-6 flex flex-wrap gap-3">
-                        <a href="cv_fr.pdf" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 rounded-xl text-xs font-semibold hover:opacity-90 transition-opacity">
-                            <i data-lucide="file-text" class="w-4 h-4"></i>
-                            <span data-fr="CV (FR)" data-en="CV (FR)">CV (FR)</span>
+                    <h1 class="text-4xl sm:text-5xl font-light tracking-tight text-slate-900 dark:text-white">
+                        William <span class="font-semibold">Darolle</span>
+                    </h1>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed font-normal" data-fr="Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale." data-en="Currently a first-year engineering student at ENSEEIHT specializing in 3EA (Electronics, Electrical Energy & Automation), I am aiming to build my career in the aerospace industry. I am passionate about embedded electronics and smart systems. Driven and methodical, I am eager to contribute to hands-on projects and pursue international mobility opportunities.">
+                        Actuellement en 1ère année d'école d'ingénieur à l'ENSEEIHT en filière 3EA (Électronique, Énergie Électrique et Automatique), je souhaite orienter mon parcours vers le secteur aéronautique. Je me passionne pour l'électronique embarquée et les systèmes intelligents. Curieux et méthodique, je souhaite m'investir dans des projets concrets et saisir des opportunités de mobilité internationale.
+                    </p>
+
+                    <!-- CV BUTTONS -->
+                    <div class="pt-2 flex flex-wrap gap-4 text-xs font-medium">
+                        <a href="cv_fr.pdf" target="_blank" class="inline-flex items-center space-x-2 border-b-2 border-slate-900 dark:border-white py-1 hover:border-n7blue dark:hover:border-blue-400 transition-colors">
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            <span data-fr="Consulter le CV (FR)" data-en="View Resume (FR)">Consulter le CV (FR)</span>
                         </a>
-                        <a href="cv_en.pdf" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                            <i data-lucide="file-text" class="w-4 h-4"></i>
-                            <span data-fr="Resume (EN)" data-en="Resume (EN)">Resume (EN)</span>
+                        <a href="cv_en.pdf" target="_blank" class="inline-flex items-center space-x-2 border-b-2 border-slate-300 dark:border-slate-700 py-1 text-slate-500 dark:text-slate-400 hover:border-slate-900 dark:hover:border-white transition-colors">
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            <span data-fr="Consulter le CV (EN)" data-en="View Resume (EN)">Consulter le CV (EN)</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- CARTE ELEVATOR PITCH VIDEO (Droite) -->
-                <div class="md:col-span-5 bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-sm">
-                    <div>
-                        <h2 class="text-xl font-bold mb-2 flex items-center space-x-2">
-                            <i data-lucide="video" class="w-5 h-5 text-n7blue"></i>
-                            <span data-fr="Elevator Pitch" data-en="Elevator Pitch">Elevator Pitch</span>
-                        </h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4" data-fr="Découvrez ma vidéo de présentation en anglais (2-3 min) :" data-en="Watch my 2-3 minute video introduction in English:">
-                            Découvrez ma vidéo de présentation en anglais (2-3 min) :
-                        </p>
-                    </div>
+                <!-- PORTRAIT -->
+                <div class="flex-shrink-0">
+                    <img src="photo.jpg" alt="William Darolle" class="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover grayscale hover:grayscale-0 transition-all duration-500 shadow-sm border border-slate-100 dark:border-slate-800">
+                </div>
+            </div>
 
-                    <!-- LECTEUR VIDEO PLACEHOLDER -->
-                    <div class="relative w-full aspect-video bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center group cursor-pointer">
-                        <div class="text-center space-y-2 p-4">
-                            <div class="w-12 h-12 bg-n7blue text-white rounded-full flex items-center justify-center mx-auto shadow-md group-hover:scale-105 transition-transform">
-                                <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
-                            </div>
-                            <span class="block text-xs font-medium text-slate-600 dark:text-slate-400" data-fr="Vidéo à venir (Fichier à intégrer)" data-en="Video coming soon (File to integrate)">
-                                Vidéo à venir (Fichier à intégrer)
-                            </span>
+            <!-- ELEVATOR PITCH SECTION -->
+            <div class="space-y-4 pt-4">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Présentation Vidéo" data-en="Video Pitch">Présentation Vidéo</h2>
+                <div class="relative w-full aspect-video bg-slate-100 dark:bg-darkcard rounded-2xl overflow-hidden border border-slate-200/60 dark:border-slate-800 flex items-center justify-center group">
+                    <div class="text-center space-y-3 p-6">
+                        <div class="w-12 h-12 border border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center mx-auto text-slate-600 dark:text-slate-300 group-hover:border-n7blue group-hover:text-n7blue transition-colors">
+                            <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
                         </div>
+                        <p class="text-xs font-medium text-slate-500 dark:text-slate-400" data-fr="Elevator Pitch (2-3 min en anglais — Intégration à venir)" data-en="Elevator Pitch (2-3 min in English — Integration coming soon)">
+                            Elevator Pitch (2-3 min en anglais — Intégration à venir)
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- PARCOURS ACADÉMIQUE (TIMELINE) -->
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
-                <h2 class="text-xl font-bold mb-6 flex items-center space-x-2">
-                    <i data-lucide="graduation-cap" class="w-5 h-5 text-n7blue"></i>
-                    <span data-fr="Parcours académique" data-en="Academic Background">Parcours académique</span>
-                </h2>
-
-                <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 space-y-6">
-                    <!-- Item 1 -->
-                    <div class="ml-6 relative">
-                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-n7blue border-4 border-white dark:border-darkcard"></span>
-                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">ENSEEIHT — Toulouse</h3>
-                        <p class="text-xs text-n7blue dark:text-blue-400 font-medium">2026 – 2029</p>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1" data-fr="Filière 3EA — Électronique, Énergie Électrique, Automatique (1ère année)" data-en="3EA Specialty — Electronics, Electrical Energy, Automation (1st year)">
-                            Filière 3EA — Électronique, Énergie Électrique, Automatique (1ère année)
-                        </p>
+            <!-- TIMELINE PARCOURS -->
+            <div class="space-y-8 pt-6">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Parcours & Formation" data-en="Education Path">Parcours & Formation</h2>
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-slate-100 dark:border-slate-800/40 pb-4 gap-1">
+                        <div>
+                            <h3 class="font-medium text-base text-slate-900 dark:text-white">ENSEEIHT — Toulouse</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Filière 3EA — Électronique, Énergie Électrique, Automatique" data-en="3EA Specialty — Electronics, Electrical Energy, Automation">Filière 3EA — Électronique, Énergie Électrique, Automatique</p>
+                        </div>
+                        <span class="text-xs font-mono text-n7blue dark:text-blue-400">2026 — 2029</span>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="ml-6 relative">
-                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-700 border-4 border-white dark:border-darkcard"></span>
-                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Prépa T² — Toulouse</h3>
-                        <p class="text-xs text-slate-500 font-medium">2024 – 2026</p>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1" data-fr="Classe préparatoire aux grandes écoles" data-en="Preparatory class for French Engineering Grandes Écoles">
-                            Classe préparatoire aux grandes écoles
-                        </p>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-slate-100 dark:border-slate-800/40 pb-4 gap-1">
+                        <div>
+                            <h3 class="font-medium text-base text-slate-900 dark:text-white">Prépa T² — Toulouse</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Classe préparatoire aux grandes écoles" data-en="Preparatory class for French Engineering Grandes Écoles">Classe préparatoire aux grandes écoles</p>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">2024 — 2026</span>
                     </div>
 
-                    <!-- Item 3 -->
-                    <div class="ml-6 relative">
-                        <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-slate-300 dark:bg-slate-700 border-4 border-white dark:border-darkcard"></span>
-                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100">Lycée Polyvalent Cantau — Anglet</h3>
-                        <p class="text-xs text-slate-500 font-medium">2024</p>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1" data-fr="Baccalauréat Général (Mention Bien) — Spécialités Maths & Physique-Chimie, Options Maths Expertes et Sport" data-en="General Baccalaureate (Honors) — Majors in Math & Physics-Chemistry, Options in Advanced Math & Sport">
-                            Baccalauréat Général (Mention Bien) — Spécialités Maths & Physique-Chimie, Options Maths Expertes et Sport
-                        </p>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-slate-100 dark:border-slate-800/40 pb-4 gap-1">
+                        <div>
+                            <h3 class="font-medium text-base text-slate-900 dark:text-white">Lycée Cantau — Anglet</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400" data-fr="Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport" data-en="General Baccalaureate (Honors) — Majors in Math & Physics, Options in Advanced Math & Sport">Baccalauréat Général (Mention Bien) — Spé. Maths & Physique, Options Maths Expertes et Sport</p>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">2024</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION ENGINEERING (PROJETS & COMPÉTENCES) -->
-        <section id="engineering" class="space-y-8">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold tracking-tight" data-fr="Projets & Compétences" data-en="Projects & Skills">Projets & Compétences</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400" data-fr="Compétences clés et réalisations académiques du cursus 3EA." data-en="Key skills and academic achievements from the 3EA curriculum.">
-                    Compétences clés et réalisations académiques du cursus 3EA.
-                </p>
+        <!-- SECTION SKILLS & PROJETS -->
+        <section id="engineering" class="space-y-10 pt-6">
+            <div class="border-b border-slate-100 dark:border-slate-800/60 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Compétences & Outils" data-en="Skills & Tools">Compétences & Outils</h2>
             </div>
 
-            <!-- COMPÉTENCES EN 4 COLONNES -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <!-- Languages -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-fr="Langages" data-en="Languages">Langages</h3>
-                    <ul class="space-y-2 text-sm font-semibold">
-                        <li class="flex items-center space-x-2"><i data-lucide="code" class="w-4 h-4 text-n7blue"></i><span>Python</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="cpu" class="w-4 h-4 text-n7blue"></i><span>Langage C</span></li>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="space-y-3">
+                    <h3 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider" data-fr="Langages" data-en="Languages">Langages</h3>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2 font-mono">
+                        <li>• Python</li>
+                        <li>• Langage C</li>
                     </ul>
                 </div>
-
-                <!-- Data & Simulation -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-fr="Simulation & Data" data-en="Simulation & Data">Simulation & Data</h3>
-                    <ul class="space-y-2 text-sm font-semibold">
-                        <li class="flex items-center space-x-2"><i data-lucide="binary" class="w-4 h-4 text-n7blue"></i><span>NumPy</span></li>
+                <div class="space-y-3">
+                    <h3 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Simulation</h3>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2 font-mono">
+                        <li>• NumPy</li>
                     </ul>
                 </div>
-
-                <!-- Tools & Systems -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-fr="Outils & Systèmes" data-en="Tools & Systems">Outils & Systèmes</h3>
-                    <ul class="space-y-2 text-sm font-semibold">
-                        <li class="flex items-center space-x-2"><i data-lucide="laptop" class="w-4 h-4 text-n7blue"></i><span>macOS</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="terminal" class="w-4 h-4 text-n7blue"></i><span>VS Code</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="git-branch" class="w-4 h-4 text-n7blue"></i><span>Git / GitHub</span></li>
+                <div class="space-y-3">
+                    <h3 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider" data-fr="Outils" data-en="Tools">Outils</h3>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2 font-mono">
+                        <li>• macOS</li>
+                        <li>• VS Code</li>
+                        <li>• Git / GitHub</li>
                     </ul>
                 </div>
-
-                <!-- Soft Skills -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-3 shadow-sm">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400" data-fr="Soft Skills" data-en="Soft Skills">Soft Skills</h3>
-                    <ul class="space-y-2 text-sm font-semibold">
-                        <li class="flex items-center space-x-2"><i data-lucide="users" class="w-4 h-4 text-n7blue"></i><span data-fr="Esprit d'équipe" data-en="Teamwork">Esprit d'équipe</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="brain" class="w-4 h-4 text-n7blue"></i><span data-fr="Esprit analytique" data-en="Analytical thinking">Esprit analytique</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="refresh-cw" class="w-4 h-4 text-n7blue"></i><span data-fr="Adaptabilité" data-en="Adaptability">Adaptabilité</span></li>
-                        <li class="flex items-center space-x-2"><i data-lucide="wrench" class="w-4 h-4 text-n7blue"></i><span data-fr="Résolution de problèmes" data-en="Problem solving">Résolution de problèmes</span></li>
+                <div class="space-y-3">
+                    <h3 class="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider">Soft Skills</h3>
+                    <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2">
+                        <li data-fr="• Esprit d'équipe" data-en="• Teamwork">• Esprit d'équipe</li>
+                        <li data-fr="• Esprit analytique" data-en="• Analytical thinking">• Esprit analytique</li>
+                        <li data-fr="• Adaptabilité" data-en="• Adaptability">• Adaptabilité</li>
+                        <li data-fr="• Résolution de problèmes" data-en="• Problem solving">• Résolution de problèmes</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- SECTION PROJETS (EMPTY STATE) -->
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center space-y-3 shadow-sm">
-                <div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-full flex items-center justify-center mx-auto">
-                    <i data-lucide="folder-code" class="w-6 h-6"></i>
-                </div>
-                <h3 class="text-base font-bold" data-fr="Projets académiques 3EA à venir" data-en="Upcoming 3EA Academic Projects">
-                    Projets académiques 3EA à venir
-                </h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto" data-fr="Les travaux pratiques et projets de 1ère année d'école d'ingénieur seront ajoutés au cours du semestre." data-en="First-year engineering hands-on projects and lab work will be added throughout the semester.">
-                    Les travaux pratiques et projets de 1ère année d'école d'ingénieur seront ajoutés au cours du semestre.
-                </p>
+            <!-- ENCOCHE PROJETS FUTURS -->
+            <div class="p-6 rounded-2xl bg-slate-50 dark:bg-darkcard border border-slate-100 dark:border-slate-800 text-center space-y-2">
+                <p class="text-xs font-medium text-slate-600 dark:text-slate-300" data-fr="Projets académiques 3EA à venir" data-en="Upcoming 3EA Academic Projects">Projets académiques 3EA à venir</p>
+                <p class="text-[11px] text-slate-400 max-w-sm mx-auto" data-fr="Les fiches détaillées des travaux pratiques et réalisations seront ajoutées prochainement." data-en="Detailed project reports and lab achievements will be added soon.">Les fiches détaillées des travaux pratiques et réalisations seront ajoutées prochainement.</p>
             </div>
         </section>
 
         <!-- SECTION MOBILITÉ -->
-        <section id="mobility" class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold tracking-tight" data-fr="Mobilité Internationale" data-en="International Mobility">Mobilité Internationale</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400" data-fr="Mes 3 projets d'ouverture internationale au cours du cursus N7." data-en="My 3 international mobility projects during the N7 curriculum.">
-                    Mes 3 projets d'ouverture internationale au cours du cursus N7.
-                </p>
+        <section id="mobility" class="space-y-8 pt-6">
+            <div class="border-b border-slate-100 dark:border-slate-800/60 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Projets de Mobilité" data-en="Mobility Projects">Projets de Mobilité</h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Carte Mobilité 1 -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
-                    <div class="h-36 bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-                        <i data-lucide="image" class="w-8 h-8"></i>
-                    </div>
-                    <div class="p-5 space-y-2 flex-grow">
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-blue-100 text-n7blue dark:bg-blue-900/40 dark:text-blue-300 rounded-md">Projet 1</span>
-                        <h3 class="text-base font-bold" data-fr="Destination 1 (À préciser)" data-en="Destination 1 (To be specified)">Destination 1 (À préciser)</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Description du projet d'échange académique ou de séjour d'études." data-en="Description of the academic exchange or study program project.">
-                            Description du projet d'échange académique ou de séjour d'études.
-                        </p>
-                    </div>
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-darkcard border border-slate-100 dark:border-slate-800 space-y-3">
+                    <span class="text-[10px] font-mono text-n7blue dark:text-blue-400 uppercase">Projet 01</span>
+                    <h3 class="text-sm font-semibold" data-fr="Échange Académique" data-en="Academic Exchange">Échange Académique</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
-
-                <!-- Carte Mobilité 2 -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
-                    <div class="h-36 bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-                        <i data-lucide="image" class="w-8 h-8"></i>
-                    </div>
-                    <div class="p-5 space-y-2 flex-grow">
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-blue-100 text-n7blue dark:bg-blue-900/40 dark:text-blue-300 rounded-md">Projet 2</span>
-                        <h3 class="text-base font-bold" data-fr="Destination 2 (À préciser)" data-en="Destination 2 (To be specified)">Destination 2 (À préciser)</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Description du projet d'immersion culturelle ou partenariat universitaire." data-en="Description of the cultural immersion or university partnership project.">
-                            Description du projet d'immersion culturelle ou partenariat universitaire.
-                        </p>
-                    </div>
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-darkcard border border-slate-100 dark:border-slate-800 space-y-3">
+                    <span class="text-[10px] font-mono text-n7blue dark:text-blue-400 uppercase">Projet 02</span>
+                    <h3 class="text-sm font-semibold" data-fr="Immersion Culturelle" data-en="Cultural Immersion">Immersion Culturelle</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
-
-                <!-- Carte Mobilité 3 -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
-                    <div class="h-36 bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-                        <i data-lucide="image" class="w-8 h-8"></i>
-                    </div>
-                    <div class="p-5 space-y-2 flex-grow">
-                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-blue-100 text-n7blue dark:bg-blue-900/40 dark:text-blue-300 rounded-md">Projet 3</span>
-                        <h3 class="text-base font-bold" data-fr="Destination 3 (À préciser)" data-en="Destination 3 (To be specified)">Destination 3 (À préciser)</h3>
-                        <p class="text-xs text-slate-600 dark:text-slate-400" data-fr="Description du projet de stage ingénieur à l'étranger." data-en="Description of the engineering internship abroad project.">
-                            Description du projet de stage ingénieur à l'étranger.
-                        </p>
-                    </div>
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-darkcard border border-slate-100 dark:border-slate-800 space-y-3">
+                    <span class="text-[10px] font-mono text-n7blue dark:text-blue-400 uppercase">Projet 03</span>
+                    <h3 class="text-sm font-semibold" data-fr="Stage à l'Étranger" data-en="Internship Abroad">Stage à l'Étranger</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
                 </div>
             </div>
         </section>
 
         <!-- SECTION ENGAGEMENT -->
-        <section id="engagement" class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold tracking-tight" data-fr="Engagement RSE & Citoyen" data-en="Sustainability & Civic Engagement">Engagement RSE & Citoyen</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400" data-fr="Mes actions écologiques, sociétales et associatives." data-en="My ecological, societal, and community initiatives.">
-                    Mes actions écologiques, sociétales et associatives.
-                </p>
+        <section id="engagement" class="space-y-6 pt-6">
+            <div class="border-b border-slate-100 dark:border-slate-800/60 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Engagement RSE & Sociétal" data-en="Sustainability & Engagement">Engagement RSE & Sociétal</h2>
             </div>
 
-            <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2.5 bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 rounded-xl">
-                        <i data-lucide="leaf" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold" data-fr="Engagements à venir" data-en="Upcoming Commitments">Engagements à venir</h3>
-                </div>
-                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-fr="Espace réservé pour décrire tes projets associatifs, actions RSE ou participation à des initiatives de transition écologique et sociétale au cours de ta scolarité à l'ENSEEIHT." data-en="Reserved space to describe your club activities, CSR actions, or participation in ecological and societal transition initiatives during your studies at ENSEEIHT.">
-                    Espace réservé pour décrire tes projets associatifs, actions RSE ou participation à des initiatives de transition écologique et sociétale au cours de ta scolarité à l'ENSEEIHT.
-                </p>
+            <div class="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-2">
+                <h3 class="text-sm font-semibold" data-fr="Initiatives à venir" data-en="Upcoming Initiatives">Initiatives à venir</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux." data-en="Reserved space for your photos and descriptions of environmental and community engagements.">Espace réservé pour intégrer tes photos et descriptions d'engagements citoyens et environnementaux.</p>
             </div>
         </section>
 
-        <!-- SECTION SPORTS & LOISIRS -->
-        <section id="sports" class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold tracking-tight" data-fr="Sports & Loisirs" data-en="Sports & Hobbies">Sports & Loisirs</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400" data-fr="Mes passions et activités extra-académiques." data-en="My hobbies and extra-curricular activities.">
-                    Mes passions et activités extra-académiques.
-                </p>
+        <!-- SECTION SPORTS -->
+        <section id="sports" class="space-y-6 pt-6">
+            <div class="border-b border-slate-100 dark:border-slate-800/60 pb-4">
+                <h2 class="text-xs uppercase tracking-widest font-semibold text-slate-400" data-fr="Sports & Passions" data-en="Sports & Hobbies">Sports & Passions</h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- Carte Sport -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="p-2.5 bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300 rounded-xl">
-                            <i data-lucide="trophy" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold" data-fr="Pratique sportive" data-en="Sports Practice">Pratique sportive</h3>
-                            <span class="text-[10px] text-slate-400 font-medium" data-fr="Option Sport au Bac (Lycée Cantau)" data-en="Baccalaureate Sport Option">Option Sport au Bac (Lycée Cantau)</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-fr="Contenu et photos sportives à ajouter (activités actuelles, compétitions, sports de montagne/glisse...)." data-en="Sports content and photos to be added (current activities, competitions, outdoor sports...).">
-                        Contenu et photos sportives à ajouter (activités actuelles, compétitions, sports de montagne/glisse...).
-                    </p>
+                <div class="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-2">
+                    <h3 class="text-sm font-semibold" data-fr="Pratique Sportive" data-en="Sports Practice">Pratique Sportive</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter." data-en="Baccalaureate Sport Option at Cantau (Anglet). Photos and text coming soon.">Option Sport au Bac à Cantau (Anglet). Photos et descriptions à ajouter.</p>
                 </div>
-
-                <!-- Carte Loisirs -->
-                <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="p-2.5 bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300 rounded-xl">
-                            <i data-lucide="compass" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-base font-bold" data-fr="Centres d'intérêt" data-en="Interests">Centres d'intérêt</h3>
-                    </div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-fr="Passion pour les technologies innovantes, l'aéronautique et les projets électroniques." data-en="Passion for innovative technologies, aeronautics, and electronics projects.">
-                        Passion pour les technologies innovantes, l'aéronautique et les projets électroniques.
-                    </p>
+                <div class="p-6 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-2">
+                    <h3 class="text-sm font-semibold" data-fr="Centres d'Intérêt" data-en="Interests">Centres d'Intérêt</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Aéronautique, électronique et nouvelles technologies." data-en="Aeronautics, electronics, and tech innovations.">Aéronautique, électronique et nouvelles technologies.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER / CONTACT -->
-    <footer class="bg-white dark:bg-darkcard border-t border-slate-200 dark:border-slate-800 py-8 mt-12">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+    <!-- FOOTER EPURE AVEC COPIE AUTOMATIQUE -->
+    <footer class="border-t border-slate-100 dark:border-slate-800/60 py-12 bg-white dark:bg-darkbg">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500 dark:text-slate-400">
             <div>
-                <p class="font-bold text-slate-800 dark:text-slate-200">William Darolle</p>
-                <p data-fr="Élève-Ingénieur ENSEEIHT 3EA — Toulouse" data-en="ENSEEIHT 3EA Engineering Student — Toulouse">Élève-Ingénieur ENSEEIHT 3EA — Toulouse</p>
+                <p class="font-semibold text-slate-900 dark:text-white">William Darolle</p>
+                <p>ENSEEIHT 3EA — Toulouse</p>
             </div>
 
-            <!-- COORDONNÉES EXACTES -->
-            <div class="flex flex-wrap items-center justify-center gap-6 font-medium text-slate-700 dark:text-slate-300">
-                <a href="mailto:William.darolle@etu.toulouse-inp.fr" class="flex items-center space-x-1.5 hover:text-n7blue transition-colors">
-                    <i data-lucide="mail" class="w-4 h-4 text-n7blue"></i>
-                    <span>William.darolle@etu.toulouse-inp.fr</span>
-                </a>
-                <a href="tel:0766247091" class="flex items-center space-x-1.5 hover:text-n7blue transition-colors">
-                    <i data-lucide="phone" class="w-4 h-4 text-n7blue"></i>
-                    <span>07 66 24 70 91</span>
-                </a>
+            <div class="flex flex-wrap items-center gap-6">
+                <button onclick="copyToClipboard('William.darolle@etu.toulouse-inp.fr', 'mailText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                    <span id="mailText">William.darolle@etu.toulouse-inp.fr</span>
+                </button>
+                <button onclick="copyToClipboard('0766247091', 'phoneText')" class="hover:text-n7blue transition-colors flex items-center space-x-1.5">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                    <span id="phoneText">07 66 24 70 91</span>
+                </button>
             </div>
-
-            <p>© 2026 William Darolle</p>
         </div>
     </footer>
 
-    <!-- SCRIPTS INTERACTION -->
+    <!-- SCRIPTS -->
     <script>
-        // Initialiser les icônes Lucide
         lucide.createIcons();
 
-        // Gestion du Mode Sombre
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
         }
 
-        // Gestion Bilingue (FR / EN)
         let currentLang = 'fr';
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
@@ -390,6 +285,14 @@
                     el.innerText = text;
                 }
             });
+        }
+
+        function copyToClipboard(text, elementId) {
+            navigator.clipboard.writeText(text);
+            const el = document.getElementById(elementId);
+            const originalText = el.innerText;
+            el.innerText = 'Copié !';
+            setTimeout(() => { el.innerText = originalText; }, 2000);
         }
     </script>
 </body>
