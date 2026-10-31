@@ -246,26 +246,76 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-n7blue hover:shadow-lg hover:-translate-y-1 transition-all group">
-                    <span class="text-[11px] font-mono font-bold text-n7blue dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">PROJET 01</span>
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-n7blue transition-colors" data-fr="Échange Académique" data-en="Academic Exchange">Échange Académique</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
+                
+                <!-- CARTE 1 : SHERBROOKE (CANADA) -->
+                <div class="rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:border-n7blue hover:shadow-xl hover:-translate-y-1 transition-all group flex flex-col justify-between">
+                    <div class="relative h-44 overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        <img src="canada.jpg" alt="Université de Sherbrooke Canada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 -z-10">
+                            <i data-lucide="image" class="w-8 h-8"></i>
+                        </div>
+                        <span class="absolute top-3 left-3 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 bg-n7blue text-white rounded-full backdrop-blur-md">Projet 01</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white" data-fr="Double-Diplôme / Échange (Canada)" data-en="Double Degree / Exchange (Canada)">Double-Diplôme / Échange (Canada)</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Parcours au sein de la Faculté de génie de l'Université de Sherbrooke en partenariat avec l'N7, visant la Maîtrise en génie aérospatial pour me spécialiser dans le secteur aéronautique." data-en="Program at Sherbrooke University Faculty of Engineering in partnership with N7, aiming for a Master in Aerospace Engineering to specialize in the aeronautical sector.">
+                                Parcours au sein de la Faculté de génie de l'Université de Sherbrooke en partenariat avec l'N7, visant la Maîtrise en génie aérospatial pour me spécialiser dans le secteur aéronautique.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-semibold text-n7blue dark:text-blue-400 flex items-center space-x-1">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                            <span>Université de Sherbrooke, Canada</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-indigo-500 hover:shadow-lg hover:-translate-y-1 transition-all group">
-                    <span class="text-[11px] font-mono font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-md">PROJET 02</span>
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors" data-fr="Immersion Culturelle" data-en="Cultural Immersion">Immersion Culturelle</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
+                <!-- CARTE 2 : CÉSURE AMÉRIQUE LATINE -->
+                <div class="rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:border-indigo-500 hover:shadow-xl hover:-translate-y-1 transition-all group flex flex-col justify-between">
+                    <div class="relative h-44 overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        <img src="cesure.jpg" alt="Césure Amérique Latine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 -z-10">
+                            <i data-lucide="image" class="w-8 h-8"></i>
+                        </div>
+                        <span class="absolute top-3 left-3 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 bg-indigo-600 text-white rounded-full backdrop-blur-md">Projet 02</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white" data-fr="Césure (Amérique Latine)" data-en="Gap Year (Latin America)">Césure (Amérique Latine)</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Année de césure internationale en Amérique du Sud pour réaliser une expérience professionnelle / de travail en entreprise et un projet personnel d'immersion culturelle." data-en="International gap year in South America combining work/internship experience and a personal cultural immersion project.">
+                                Année de césure internationale en Amérique du Sud pour réaliser une expérience professionnelle / de travail en entreprise et un projet personnel d'immersion culturelle.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 flex items-center space-x-1">
+                            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                            <span data-fr="Amérique du Sud — Immersion & Travail" data-en="South America — Immersion & Work">Amérique du Sud — Immersion & Travail</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="p-6 rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm hover:border-cyan-500 hover:shadow-lg hover:-translate-y-1 transition-all group">
-                    <span class="text-[11px] font-mono font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-950/60 px-2.5 py-1 rounded-md">PROJET 03</span>
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors" data-fr="Stage à l'Étranger" data-en="Internship Abroad">Stage à l'Étranger</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed" data-fr="Explicatifs et visuels de la ville à venir." data-en="City details and visuals coming soon.">Explicatifs et visuels de la ville à venir.</p>
+                <!-- CARTE 3 : STAGE AIRBUS ROYAUME-UNI -->
+                <div class="rounded-3xl bg-white dark:bg-darkcard border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:border-cyan-500 hover:shadow-xl hover:-translate-y-1 transition-all group flex flex-col justify-between">
+                    <div class="relative h-44 overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        <img src="uk.jpg" alt="Stage Airbus Royaume-Uni" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 -z-10">
+                            <i data-lucide="image" class="w-8 h-8"></i>
+                        </div>
+                        <span class="absolute top-3 left-3 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 bg-cyan-600 text-white rounded-full backdrop-blur-md">Projet 03</span>
+                    </div>
+                    <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white" data-fr="Stage Airbus (Royaume-Uni)" data-en="Airbus Internship (UK)">Stage Airbus (Royaume-Uni)</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed" data-fr="Stage assistant ingénieur au sein des centres R&D d'Airbus UK (Bristol / Filton), axé sur l'électronique embarquée, les systèmes de commande et l'avionique." data-en="Engineering internship at Airbus UK R&D centers (Bristol / Filton), focused on embedded electronics, control systems, and avionics.">
+                                Stage assistant ingénieur au sein des centres R&D d'Airbus UK (Bristol / Filton), axé sur l'électronique embarquée, les systèmes de commande et l'avionique.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-semibold text-cyan-600 dark:text-cyan-400 flex items-center space-x-1">
+                            <i data-lucide="plane" class="w-3.5 h-3.5"></i>
+                            <span>Airbus UK, Royaume-Uni</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
 
